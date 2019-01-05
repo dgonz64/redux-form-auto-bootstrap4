@@ -6,7 +6,7 @@ It extends [redux-form-auto](https://github.com/dgonz64/redux-form-auto) and the
 
 ## Play with the demo
 
-[Demo](https://dgonz64.github.io/redux-form-auto-bootstrap4/demo/)
+[Demo](https://dgonz64.github.io/redux-form-auto-bootstrap4-demo/demo/)
 
 ## Installation
 
