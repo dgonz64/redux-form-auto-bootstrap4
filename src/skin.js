@@ -1,0 +1,118 @@
+import * as components from './components'
+import { InputWrap } from './wrappers/InputWrap'
+import { InputArrayWrap } from './wrappers/InputArrayWrap'
+
+import { InputArrayPanel } from './components/InputArrayPanel'
+import { InputArrayTable } from './components/InputArrayTable'
+import { BSInputWrapper } from './components/BSInputWrapper'
+
+import { renderInputs } from 'redux-form-auto'
+
+/**
+ * Data brick used to create a component for a type.
+ *
+ * @typedef {object} skinTypeMap
+ * @property {Component} component
+ * @property {function|object} props
+ */
+export default {
+  form: {
+    component: components.Form,
+    props: {}
+  },
+  string: {
+    component: InputWrap,
+    props: {
+      inputWrapper: BSInputWrapper,
+      inputComponent: 'input'
+    }
+  },
+  password: {
+    component: InputWrap,
+    props: {
+      inputWrapper: BSInputWrapper,
+      inputComponent: 'input',
+      type: 'password'
+    }
+  },
+  number: {
+    component: InputWrap,
+    props: {
+      inputWrapper: BSInputWrapper,
+      inputComponent: 'input',
+      type: 'number',
+      parse: value => Number(value)
+    }
+  },
+  array: {
+    component: InputArrayWrap,
+    props: props => {
+      const {
+        config = {},
+        propOverrides,
+        fieldSchema: { type },
+        name
+      } = props
+
+      const { arrayMode } = config
+      const arrayHandler = arrayMode == 'table' ?
+        InputArrayTable : InputArrayPanel
+
+      return {
+        ...props,
+        arrayHandler,
+        children: renderInputs({
+          schema: type[0],
+          config,
+          propOverrides,
+          containerField: name
+        })
+      }
+    }
+  },
+  schema: {
+    component: components.Submodel,
+  },
+  select: {
+    component: InputWrap,
+    props: props => {
+      const {
+        fieldSchema: { options },
+        schemaTypeName,
+        name
+      } = props
+
+      return {
+        ...props,
+        inputWrapper: BSInputWrapper,
+        inputComponent: 'select',
+        children: components.mapSelectOptions(
+          schemaTypeName,
+          name,
+          options
+        )
+      }
+    }
+  },
+  radios: {
+    component: InputWrap,
+    props: props => {
+      return {
+        ...props,
+        inputWrapper: BSInputWrapper,
+        inputComponent: components.Radio,
+        labelTop: true,
+        children: components.mapRadioOptions(props)
+      }
+    }
+  },
+  boolean: {
+    component: InputWrap,
+    props: props => ({
+      ...props,
+      inputWrapper: BSInputWrapper,
+      inputComponent: components.Checkbox,
+      labelOverride: ''
+    })
+  }
+}

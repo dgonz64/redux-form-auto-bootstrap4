@@ -1,0 +1,52 @@
+{
+  "name": "redux-form-auto-bootstrap4",
+  "version": "1.0.0",
+  "description": "Automatic form generation using bootstrap 4",
+  "main": "./dist/index.js",
+  "sideEffects": false,
+  "scripts": {
+    "test": "node_modules/.bin/jest --verbose",
+    "testDebug": "node --inspect-brk node_modules/.bin/jest --runInBand",
+    "testShort": "jest",
+    "build": "rimraf dist && babel src --out-dir dist",
+    "prepublishOnly": "npm run build",
+    "watch": "rimraf dist && babel src --out-dir dist --watch --verbose",
+    "demo": "cd demo && npm run buildAndCopy"
+  },
+  "keywords": [
+    "automatic",
+    "form",
+    "generation",
+    "validation",
+    "bootstrap"
+  ],
+  "author": "David González <braben@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dgonz64/redux-form-auto-bootstrap4"
+  },
+  "peerDependencies": {
+    "react": "^15.0.0-0 || ^16.0.0-0",
+    "react-redux": "^4.3.0 || ^5.0.0",
+    "redux-form": "^7.0.0",
+    "redux": "^3.0.0",
+    "bootstrap": "^4.0.0"
+  },
+  "dependencies": {
+    "classnames": "^2.2.5",
+    "moment": "^2.22.1",
+    "prop-types": "^15.6.2",
+    "redux-form-auto": "^1.1.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-plugin-transform-react-jsx": "^6.24.1",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "rimraf": "^2.6.3"
+  }
+}
