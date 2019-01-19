@@ -25,12 +25,16 @@ const renderHeader = (header) => {
     return null
 }
 
-const getClasses = ({ panelType, className }) => {
+const getClasses = ({ panelType, borderType, className }) => {
   const typeIsDefault = !panelType || panelType == 'default'
   const typeClass = typeIsDefault ? '' : 'bg-' + panelType
   const textClass = typeIsDefault ? 'text-dark' : 'text-white'
   const buttonClass = className || ''
-  return classnames('card', typeClass, textClass, buttonClass)
+
+  const borderIsDef = !borderType || borderType == 'default'
+  const borderClass = borderIsDef ? '' : `border-${borderType}`
+
+  return classnames('card', typeClass, textClass, buttonClass, borderClass)
 }
 
 export const Panel = ({
@@ -38,11 +42,12 @@ export const Panel = ({
   table = null,
   className,
   panelType,
+  borderType,
   noMargin,
   onClick,
   children
 }) => {
-  const classes = getClasses({ panelType, className })
+  const classes = getClasses({ panelType, borderType, className })
 
   return (
     <div

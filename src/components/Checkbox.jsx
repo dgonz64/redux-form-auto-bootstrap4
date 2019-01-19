@@ -15,10 +15,17 @@ export class Checkbox extends PureComponent {
       'offset-sm-4': config.horizontal
     })
 
+    const id = `${schemaTypeName}-${name}`
+
     return (
       <div className={classes}>
-        <input className="form-check-input" {...input} type="checkbox" />
-        <label className="form-check-label">
+        <input
+          id={id}
+          className="form-check-input"
+          {...input}
+          type="checkbox"
+        />
+        <label className="form-check-label" for={id}>
           {trModel(schemaTypeName, name)}
         </label>
       </div>

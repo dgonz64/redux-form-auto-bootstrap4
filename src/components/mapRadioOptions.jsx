@@ -14,36 +14,35 @@ export const mapRadioOptions = ({
 }) =>
   options.map(op => {
     const label = trModel(schemaTypeName, name, op)
-    const $spanComponent = config.horizontal ? 'div' : 'span'
-    const spanClasses = classnames({
-      'form-check': config.horizontal
-    })
-    const fieldClasses = classnames({
-      'form-check-input': config.horizontal
+    const spanClasses = classnames('form-check', {
+      'form-check-inline': !config.horizontal
     })
 
+    const id = `${schemaTypeName}-${name}-${op}`
+
     return (
-      <$spanComponent className={spanClasses} key={op}>
+      <div className={spanClasses} key={op}>
         <Field
-          className={fieldClasses}
+          id={id}
+          className="form-check-input"
           name={name}
           component="input"
           type="radio"
           value={op}
         />
-        <label className="form-check-label">
+        <label className="form-check-label" for={id}>
           {` ${label} `}
         </label>
-      </$spanComponent>
+      </div>
     )
   })
 
 export class Radio extends PureComponent {
   render() {
     return (
-      <span key={this.props.name}>
+      <div key={this.props.name}>
         {this.props.children}
-      </span>
+      </div>
     )
   }
 }
