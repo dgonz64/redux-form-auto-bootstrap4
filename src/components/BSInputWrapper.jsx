@@ -23,9 +23,20 @@ const renderLabel = props => {
 const renderError = (message) => {
   if (message) {
     return (
-      <span className="help-block">
+      <div className="invalid-feedback">
         {message}
-      </span>
+      </div>
+    )
+  } else
+    return null
+}
+
+const renderWarning = (message) => {
+  if (message) {
+    return (
+      <small className="form-text">
+        {message}
+      </small>
     )
   } else
     return null
@@ -34,7 +45,8 @@ const renderError = (message) => {
 const renderElement = (props, wrapperClasses) =>
   <div className={wrapperClasses}>
     {props.children}
-    {renderError(props.errorMessage || props.warningMessage)}
+    {renderError(props.errorMessage)}
+    {renderWarning(props.warningMessage)}
   </div>
 
 export const BSInputWrapper = props => {
@@ -48,9 +60,7 @@ export const BSInputWrapper = props => {
   const groupClasses = classnames(
     'form-group',
     {
-      row: props.horizontal,
-      'has-error': props.errorMessage,
-      'has-warning': props.warningMessage
+      row: props.horizontal
     }
   )
 

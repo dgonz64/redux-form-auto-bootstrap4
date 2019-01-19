@@ -61,7 +61,12 @@ class InputBase extends Component {
     const label = typeof labelOverride != 'undefined' ?
       labelOverride : trModel(schemaTypeName, fieldName, '_field')
     const placeholder = noWrap ? label : null
-    const inputClasses = classnames('form-control', className)
+    const errorMessage = touched && error
+    const warningMessage = touched && warning
+    const inputClasses = classnames('form-control', className, {
+      'is-invalid': errorMessage,
+      // 'is-valid': (touched && !error && !warning)
+    })
 
     return (
       <$wrapper
@@ -71,8 +76,8 @@ class InputBase extends Component {
         inline={inline}
         fieldset={fieldset}
         labelTop={labelTop}
-        errorMessage={touched && error}
-        warningMessage={touched && warning}
+        errorMessage={errorMessage}
+        warningMessage={warningMessage}
         elementOnly={noWrap}
         wrapperClassName={wrapperClassName}
       >
