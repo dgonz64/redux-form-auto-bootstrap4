@@ -30,7 +30,7 @@ export const mapRadioOptions = ({
           type="radio"
           value={op}
         />
-        <label className="form-check-label" for={id}>
+        <label className="form-check-label" htmlFor={id}>
           {` ${label} `}
         </label>
       </div>

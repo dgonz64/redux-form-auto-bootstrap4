@@ -110,7 +110,7 @@ export default {
     component: InputWrap,
     props: props => ({
       ...props,
-      inputWrapper: BSInputWrapper,
+      inputWrapper: components.CheckboxWrapper,
       inputComponent: components.Checkbox,
       labelOverride: ''
     })

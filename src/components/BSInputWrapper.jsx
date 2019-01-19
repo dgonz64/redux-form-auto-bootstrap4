@@ -39,10 +39,12 @@ const renderElement = (props, wrapperClasses) =>
 
 export const BSInputWrapper = props => {
   const label = props.label ? renderLabel(props) : null
-  const wrapperClasses = props.wrapperClassName || classnames({
-    'col-sm-9': props.horizontal && !props.inline,
-    'col-sm-10': props.inline
-  })
+  const wrapperClasses = 'wrapperClassName' in props ? 
+    props.wrapperClassName
+    : classnames({
+      'col-sm-9': props.horizontal && !props.inline,
+      'col-sm-10': props.inline
+    })
   const groupClasses = classnames(
     'form-group',
     {

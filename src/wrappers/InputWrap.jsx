@@ -33,6 +33,7 @@ class InputBase extends Component {
       onKeyPress,
       labelOverride,
       componentPropMap,
+      wrapperClassName,
       meta,
       meta: {
         touched,
@@ -73,6 +74,7 @@ class InputBase extends Component {
         errorMessage={touched && error}
         warningMessage={touched && warning}
         elementOnly={noWrap}
+        wrapperClassName={wrapperClassName}
       >
         <$input
           className={inputClasses}
