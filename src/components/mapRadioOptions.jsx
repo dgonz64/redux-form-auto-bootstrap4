@@ -58,14 +58,23 @@ export class Radio extends PureComponent {
 
 export const RadiosWrapper = ({
   horizontal,
-  children
+  children,
+  label
 }) => {
   const classes = classnames('form-group', {
     row: horizontal
   })
 
+  const labelClasses = classnames('control-label', 'pt-0', {
+    'col-form-label': horizontal,
+    'col-sm-3': horizontal,
+  })
+
   return (
     <div className={classes}>
+      <div className={labelClasses}>
+        {label}
+      </div>
       {children}
     </div>
   )

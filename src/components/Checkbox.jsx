@@ -41,9 +41,11 @@ const renderInputsGroup = (params) => {
   const { horizontal } = params
   const inputs = renderInputs(params)
 
+  const style = horizontal ? { paddingLeft: 0 } : null
+
   if (horizontal) {
     return (
-      <div className="col-sm-9 form-check">
+      <div className="col-sm-9" style={style}>
         {inputs}
       </div>
     )
