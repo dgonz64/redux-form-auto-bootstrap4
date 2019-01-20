@@ -12,11 +12,11 @@ const renderSeparator = horizontal => {
 }
 
 const renderInputs = ({ id, horizontal, label, input, messages }) => {
-  const classes = classnames({
-    'form-check': !horizontal
+  const classes = classnames('custom-control', 'custom-checkbox', {
+    'form-check': false
   })
 
-  const inputClasses = classnames('form-check-input', {
+  const inputClasses = classnames('custom-control-input', {
     'is-invalid': messages && messages.touched && messages.error
   })
 
@@ -29,7 +29,7 @@ const renderInputs = ({ id, horizontal, label, input, messages }) => {
         {...input}
         type="checkbox"
       />
-      <label key="label" className="form-check-label" htmlFor={id}>
+      <label key="label" className="custom-control-label" htmlFor={id}>
         {label}
       </label>
       <InputError messages={messages} />
