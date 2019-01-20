@@ -6,7 +6,7 @@ import { InputError } from './InputError'
 
 const renderSeparator = horizontal => {
   if (horizontal)
-    return <div className="col-sm-3"></div>
+    return <div key="sep" className="col-sm-3"></div>
   else
     return null
 }
@@ -32,7 +32,7 @@ const renderInputs = ({ id, horizontal, label, input, messages }) => {
       <label key="label" className="custom-control-label" htmlFor={id}>
         {label}
       </label>
-      <InputError messages={messages} />
+      <InputError key="errors" messages={messages} />
     </div>
   )
 }
@@ -45,7 +45,7 @@ const renderInputsGroup = (params) => {
 
   if (horizontal) {
     return (
-      <div className="col-sm-9" style={style}>
+      <div key="inputs" className="col-sm-9" style={style}>
         {inputs}
       </div>
     )
@@ -66,23 +66,24 @@ export class Checkbox extends PureComponent {
     const id = `${schemaTypeName}-${name}`
     const label = trModel(schemaTypeName, name)
 
-    return [
-      renderSeparator(horizontal),
-      renderInputsGroup({ id, horizontal, label, input, messages })
-    ]
+    const classes = classnames('form-group', {
+      row: horizontal
+    })
+
+    return (
+      <div className={classes}>
+        {renderSeparator(horizontal)}
+        {renderInputsGroup({ id, horizontal, label, input, messages })}
+      </div>
+    )
   }
 }
 
 export const CheckboxWrapper = ({
-  horizontal,
   children
 }) => {
-  const classes = classnames('form-group', {
-    row: horizontal
-  })
-
   return (
-    <div className={classes}>
+    <div className="form-group">
       {children}
     </div>
   )
