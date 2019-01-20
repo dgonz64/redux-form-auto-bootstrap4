@@ -99,9 +99,10 @@ export default {
     props: props => {
       return {
         ...props,
-        inputWrapper: BSInputWrapper,
+        inputWrapper: components.RadiosWrapper,
         inputComponent: components.Radio,
         labelTop: true,
+        provideMessages: true,
         children: components.mapRadioOptions(props)
       }
     }
@@ -112,6 +113,7 @@ export default {
       ...props,
       inputWrapper: components.CheckboxWrapper,
       inputComponent: components.Checkbox,
+      provideMessages: true,
       labelOverride: ''
     })
   }

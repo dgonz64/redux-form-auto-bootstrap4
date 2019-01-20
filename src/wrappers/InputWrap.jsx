@@ -34,6 +34,7 @@ class InputBase extends Component {
       labelOverride,
       componentPropMap,
       wrapperClassName,
+      provideMessages,
       meta,
       meta: {
         touched,
@@ -55,6 +56,14 @@ class InputBase extends Component {
         autoFocus,
         schemaTypeName
       } : input)
+
+    if (provideMessages) {
+      providedRest.messages = {
+        touched,
+        error,
+        warning
+      }
+    }
 
     const noWrap = type == 'hidden' || elementOnly
     const fieldName = arrLast(input.name.split('.'))

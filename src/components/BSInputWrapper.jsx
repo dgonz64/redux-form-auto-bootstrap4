@@ -2,6 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
 
+import { InputError } from './InputError'
+
 const renderLabel = props => {
   const labelClasses = classnames(
     'control-label',
@@ -45,8 +47,10 @@ const renderWarning = (message) => {
 const renderElement = (props, wrapperClasses) =>
   <div className={wrapperClasses}>
     {props.children}
-    {renderError(props.errorMessage)}
-    {renderWarning(props.warningMessage)}
+    <InputError
+      errorMessage={props.errorMessage}
+      warningMessage={props.warningMessage}
+    />
   </div>
 
 export const BSInputWrapper = props => {

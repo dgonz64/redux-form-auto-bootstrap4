@@ -4,12 +4,15 @@ import classnames from 'classnames'
 
 import { trModel } from 'redux-form-auto'
 
+import { InputError } from './InputError'
+
 export const mapRadioOptions = ({
   name,
   schemaTypeName,
   fieldSchema: {
     options
   },
+  messages,
   config
 }) =>
   options.map(op => {
@@ -17,14 +20,19 @@ export const mapRadioOptions = ({
     const spanClasses = classnames('form-check', {
       'form-check-inline': !config.horizontal
     })
+    const errored = messages && messages.touched && messages.error
 
     const id = `${schemaTypeName}-${name}-${op}`
+
+    const inputClasses = classnames('form-check-input', {
+      'is-invalid': errored
+    })
 
     return (
       <div className={spanClasses} key={op}>
         <Field
           id={id}
-          className="form-check-input"
+          className={inputClasses}
           name={name}
           component="input"
           type="radio"
@@ -42,7 +50,23 @@ export class Radio extends PureComponent {
     return (
       <div key={this.props.name}>
         {this.props.children}
+        <InputError messages={this.props.messages} />
       </div>
     )
   }
+}
+
+export const RadiosWrapper = ({
+  horizontal,
+  children
+}) => {
+  const classes = classnames('form-group', {
+    row: horizontal
+  })
+
+  return (
+    <div className={classes}>
+      {children}
+    </div>
+  )
 }

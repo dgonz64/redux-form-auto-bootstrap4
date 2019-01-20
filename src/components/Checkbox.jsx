@@ -2,6 +2,8 @@ import React, { PureComponent } from 'react'
 import { trModel } from 'redux-form-auto'
 import classnames from 'classnames'
 
+import { InputError } from './InputError'
+
 const renderSeparator = horizontal => {
   if (horizontal)
     return <div className="col-sm-3"></div>
@@ -9,9 +11,13 @@ const renderSeparator = horizontal => {
     return null
 }
 
-const renderInputs = ({ id, horizontal, label, input }) => {
+const renderInputs = ({ id, horizontal, label, input, messages }) => {
   const classes = classnames({
     'form-check': !horizontal
+  })
+
+  const inputClasses = classnames('form-check-input', {
+    'is-invalid': messages && messages.touched && messages.error
   })
 
   return (
@@ -19,13 +25,14 @@ const renderInputs = ({ id, horizontal, label, input }) => {
       <input
         key="input"
         id={id}
-        className="form-check-input"
+        className={inputClasses}
         {...input}
         type="checkbox"
       />
       <label key="label" className="form-check-label" htmlFor={id}>
         {label}
       </label>
+      <InputError messages={messages} />
     </div>
   )
 }
@@ -50,6 +57,7 @@ export class Checkbox extends PureComponent {
       input,
       input: { name },
       config: { horizontal },
+      messages,
       schemaTypeName 
     } = this.props
 
@@ -58,24 +66,22 @@ export class Checkbox extends PureComponent {
 
     return [
       renderSeparator(horizontal),
-      renderInputsGroup({ id, horizontal, label, input })
+      renderInputsGroup({ id, horizontal, label, input, messages })
     ]
   }
 }
 
 export const CheckboxWrapper = ({
-  errorMessage,
-  warningMessage,
   horizontal,
   children
 }) => {
-  const classes = classnames('form-group', { row: horizontal })
+  const classes = classnames('form-group', {
+    row: horizontal
+  })
 
   return (
     <div className={classes}>
       {children}
-      {errorMessage && <div className="invalid-feedback">{errorMessage}</div>}
-      {warningMessage && <small className="form-text">{warningMessage}</small>}
     </div>
   )
 }
