@@ -11,6 +11,7 @@ const renderCloser = ({ fields, idx, onRemove }) =>
     iconClass="trash"
     onClick={onRemove.bind(null, fields, idx)}
     className="btn-danger"
+    text="❌"
     small
   />
 
