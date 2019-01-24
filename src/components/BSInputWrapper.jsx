@@ -62,9 +62,9 @@ export const BSInputWrapper = props => {
       'col-sm-10': props.inline
     })
   const groupClasses = classnames(
-    'form-group',
     {
-      row: props.horizontal
+      'form-group': !props.inline,
+      row: props.horizontal && !props.inline
     }
   )
 
