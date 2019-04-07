@@ -53,6 +53,7 @@ export const Button = ({
 
   return (
     <button
+      aria-hidden="true"
       type={buttonType({ submit })}
       className={classes}
       onClick={handleClick.bind(null, { disabled, onClick })}

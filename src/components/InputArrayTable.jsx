@@ -8,7 +8,6 @@ import { tr } from 'redux-form-auto'
 
 const renderCloser = ({ fields, idx, onRemove }) =>
   <Button
-    iconClass="trash"
     onClick={onRemove.bind(null, fields, idx)}
     className="btn-danger"
     text="❌"

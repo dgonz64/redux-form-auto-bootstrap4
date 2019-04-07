@@ -12,7 +12,6 @@ const renderItemHeader = ({
   idx
 }) =>
   <Button
-    aria-hidden="true"
     onClick={onRemove.bind(null, fields, idx)}
     text="❌"
     className="btn-danger"
