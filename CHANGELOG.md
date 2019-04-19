@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.3
+
+### Added
+
+- Options in select and radios can be dynamic by passing a function.
+
 ## 1.0.2
 
 ### Fixed
