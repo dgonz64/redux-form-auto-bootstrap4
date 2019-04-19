@@ -82,6 +82,9 @@ export default {
         name
       } = props
 
+      const pOptions = typeof options == 'function' ?
+        options(props) : options
+
       return {
         ...props,
         inputWrapper: BSInputWrapper,
@@ -89,7 +92,7 @@ export default {
         children: components.mapSelectOptions(
           schemaTypeName,
           name,
-          options
+          pOptions
         )
       }
     }
@@ -97,13 +100,23 @@ export default {
   radios: {
     component: InputWrap,
     props: props => {
+      const {
+        fieldSchema: { options },
+      } = props
+
+      const pOptions = typeof options == 'function' ?
+        options(props) : options
+
       return {
         ...props,
         inputWrapper: components.RadiosWrapper,
         inputComponent: components.Radio,
         labelTop: true,
         provideMessages: true,
-        children: components.mapRadioOptions(props)
+        children: components.mapRadioOptions({
+          ...props,
+          options: pOptions
+        })
       }
     }
   },

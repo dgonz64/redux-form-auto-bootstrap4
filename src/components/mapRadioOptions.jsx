@@ -16,27 +16,29 @@ export const mapRadioOptions = ({
   config
 }) =>
   options.map(op => {
-    const label = trModel(schemaTypeName, name, op)
+    const label = op.label || trModel(schemaTypeName, name, op)
+    const value = op.value || op
+
     const spanClasses = classnames('custom-control', 'custom-radio', {
       'form-control-inline': !config.horizontal
     })
     const errored = messages && messages.touched && messages.error
 
-    const id = `${schemaTypeName}-${name}-${op}`
+    const id = `${schemaTypeName}-${name}-${value}`
 
     const inputClasses = classnames('custom-control-input', {
       'is-invalid': errored
     })
 
     return (
-      <div className={spanClasses} key={op}>
+      <div className={spanClasses} key={value}>
         <Field
           id={id}
           className={inputClasses}
           name={name}
           component="input"
           type="radio"
-          value={op}
+          value={value}
         />
         <label className="custom-control-label" htmlFor={id}>
           {` ${label} `}
