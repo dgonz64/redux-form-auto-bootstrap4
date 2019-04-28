@@ -1,10 +1,14 @@
 # Changelog
 
+## 1.0.4
+
+- Allow textareas by adding { textarea: true } to a string input in the schema
+
 ## 1.0.3
 
 ### Added
 
-- Options in select and radios can be dynamic by passing a function.
+- Options in select and radios can be dynamic by passing a function
 
 ## 1.0.2
 

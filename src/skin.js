@@ -22,10 +22,11 @@ export default {
   },
   string: {
     component: InputWrap,
-    props: {
+    props: props => ({
+      ...props,
       inputWrapper: BSInputWrapper,
-      inputComponent: 'input'
-    }
+      inputComponent: props.fieldSchema.textarea ? 'textarea' : 'input'
+    })
   },
   password: {
     component: InputWrap,
