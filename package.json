@@ -1,6 +1,6 @@
 {
   "name": "redux-form-auto-bootstrap4",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Automatic form generation using bootstrap 4",
   "main": "./dist/index.js",
   "sideEffects": false,
